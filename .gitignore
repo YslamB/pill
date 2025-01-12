@@ -1,0 +1,10 @@
+bin
+# .env
+uploads
+gin.log
+/.sql
+/*.log.json
+.sql
+*/test.*
+
+./uploads
