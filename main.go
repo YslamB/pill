@@ -15,13 +15,13 @@ import (
 
 func main() {
 	// TODO: all wrong info send 400 status, ingo log and error log must be seperately
-	config.InitConfig()
+	config.LoadConfig()
 	logger := utils.InitLogger()
 	db := database.InitDB()
 	server := app.InitApp(db, logger)
 
 	srv := &http.Server{
-		Addr:    config.ENV.API_URL,
+		Addr:    config.ENV.LISTEN,
 		Handler: server.Handler(),
 	}
 

@@ -8,3 +8,5 @@ gin.log
 */test.*
 
 ./uploads
+.env
+*.log.json

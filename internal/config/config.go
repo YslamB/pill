@@ -1,14 +1,16 @@
 package config
 
 import (
+	"log"
 	"os"
 	"time"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/joho/godotenv"
 )
 
 type Config struct {
-	API_URL            string
+	LISTEN             string
 	UPLOAD_PATH        string
 	DB_HOST            string
 	DB_PORT            string
@@ -20,7 +22,6 @@ type Config struct {
 	REFRESH_KEY        string
 	REFRESH_TIME       time.Duration
 	APP_VERSION        string
-	API_PORT           string
 	GIN_MODE           string
 	LOGGER_FOLDER_PATH string
 	LOGGER_FILENAME    string
@@ -28,28 +29,54 @@ type Config struct {
 
 var ENV Config
 
-func InitConfig() {
-	godotenv.Load()
+func loadEnvVariable(key string) string {
+	value, exists := os.LookupEnv(key)
+	if !exists || value == "" {
+		log.Fatalf("Environment variable %s is required but not set", key)
+	}
+	return value
+}
 
-	ENV.API_URL = os.Getenv("API_URL")
-	ENV.UPLOAD_PATH = os.Getenv("UPLOAD_PATH")
+func mustParseDuration(value string, field string) time.Duration {
+	duration, err := time.ParseDuration(value)
+	if err != nil {
+		log.Fatalf("Invalid duration format for %s: %v", field, err)
+	}
+	return duration
+}
 
-	ENV.DB_HOST = os.Getenv("DB_HOST")
-	ENV.DB_PORT = os.Getenv("DB_PORT")
-	ENV.DB_USER = os.Getenv("DB_USER")
-	ENV.GIN_MODE = os.Getenv("GIN_MODE")
-	ENV.DB_PASSWORD = os.Getenv("DB_PASSWORD")
-	ENV.DB_NAME = os.Getenv("DB_NAME")
+func LoadConfig() {
+	// Load the .env file
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 
-	ENV.LOGGER_FOLDER_PATH = os.Getenv("LOGGER_FOLDER_PATH")
-	ENV.LOGGER_FILENAME = os.Getenv("LOGGER_FILENAME")
+	// Unmarshal environment variables into a config struct
+	ENV = Config{
+		LISTEN:             loadEnvVariable("LISTEN"),
+		UPLOAD_PATH:        loadEnvVariable("UPLOAD_PATH"),
+		DB_HOST:            loadEnvVariable("DB_HOST"),
+		DB_PORT:            loadEnvVariable("DB_PORT"),
+		DB_USER:            loadEnvVariable("DB_USER"),
+		DB_PASSWORD:        loadEnvVariable("DB_PASSWORD"),
+		DB_NAME:            loadEnvVariable("DB_NAME"),
+		ACCESS_KEY:         loadEnvVariable("ACCESS_KEY"),
+		ACCESS_TIME:        mustParseDuration(loadEnvVariable("ACCESS_TIME"), "ACCESS_TIME"),
+		REFRESH_KEY:        loadEnvVariable("REFRESH_KEY"),
+		REFRESH_TIME:       mustParseDuration(loadEnvVariable("REFRESH_TIME"), "REFRESH_TIME"),
+		APP_VERSION:        loadEnvVariable("APP_VERSION"),
+		GIN_MODE:           loadEnvVariable("GIN_MODE"),
+		LOGGER_FOLDER_PATH: loadEnvVariable("LOGGER_FOLDER_PATH"),
+		LOGGER_FILENAME:    loadEnvVariable("LOGGER_FILENAME"),
+	}
 
-	ENV.ACCESS_KEY = os.Getenv("ACCESS_KEY")
-	AT, _ := time.ParseDuration(os.Getenv(("ACCESS_TIME")))
-	ENV.ACCESS_TIME = AT
+	// Validate the config struct
+	validate := validator.New()
+	err = validate.Struct(ENV)
 
-	ENV.REFRESH_KEY = os.Getenv("REFRESH_KEY")
-	RT, _ := time.ParseDuration(os.Getenv(("REFRESH_TIME")))
-	ENV.REFRESH_TIME = RT
+	if err != nil {
+		log.Fatalf("Config validation failed: %v", err)
+	}
 
 }
