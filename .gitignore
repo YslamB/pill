@@ -9,4 +9,4 @@ gin.log
 
 ./uploads
 .env
-*.log.json
+/logs

@@ -18,7 +18,7 @@ func InitApp(db *pgxpool.Pool, logger *mglogger.Logger) *gin.Engine {
 		gin.DisableConsoleColor()
 	}
 
-	router := gin.Default()
+	router := gin.New()
 
 	router.Static("/api/static", config.ENV.UPLOAD_PATH)
 
