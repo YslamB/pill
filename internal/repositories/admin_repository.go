@@ -8,15 +8,15 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-type AuthRepository struct {
+type AdminRepository struct {
 	db *pgxpool.Pool
 }
 
-func NewAuthRepository(db *pgxpool.Pool) *AuthRepository {
-	return &AuthRepository{db}
+func NewAdminRepository(db *pgxpool.Pool) *AdminRepository {
+	return &AdminRepository{db}
 }
 
-func (r *AuthRepository) PharmacyLogin(ctx context.Context, form form.Login) (string, int, error) {
+func (r *AdminRepository) CreatePharmacy(ctx context.Context, form form.CreatePharmacy) (string, int, error) {
 
 	var password string
 	var id int
@@ -26,7 +26,7 @@ func (r *AuthRepository) PharmacyLogin(ctx context.Context, form form.Login) (st
 	return password, id, err
 }
 
-func (r *AuthRepository) AdminLogin(ctx context.Context, form form.Login) (string, int, error) {
+func (r *AdminRepository) AdminLogin(ctx context.Context, form form.Login) (string, int, error) {
 
 	var password string
 	var id int

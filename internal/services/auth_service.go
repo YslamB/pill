@@ -33,12 +33,7 @@ func (s *AuthService) PharmacyLogin(ctx context.Context, form form.Login) respon
 		}
 	}
 
-	comparationError := bcrypt.CompareHashAndPassword(
-		[]byte(pass),
-		[]byte(form.Password),
-	)
-
-	if comparationError != nil {
+	if comparationError := bcrypt.CompareHashAndPassword([]byte(pass), []byte(form.Password)); comparationError != nil {
 		return response.Response{
 			Error:  comparationError,
 			Status: http.StatusUnauthorized,
@@ -61,12 +56,7 @@ func (s *AuthService) AsdminLogin(ctx context.Context, form form.Login) response
 		}
 	}
 
-	comparationError := bcrypt.CompareHashAndPassword(
-		[]byte(pass),
-		[]byte(form.Password),
-	)
-
-	if comparationError != nil {
+	if comparationError := bcrypt.CompareHashAndPassword([]byte(pass), []byte(form.Password)); comparationError != nil {
 		return response.Response{
 			Error:  comparationError,
 			Status: http.StatusUnauthorized,

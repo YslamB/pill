@@ -23,9 +23,8 @@ func NewAuthController(db *pgxpool.Pool, logger *mglogger.Logger) *AuthControlle
 func (ac *AuthController) PharmacyLogin(c *gin.Context) {
 	ctx := c.Request.Context()
 	var form form.Login
-	validationError := c.BindJSON(&form)
 
-	if validationError != nil {
+	if validationError := c.BindJSON(&form); validationError != nil {
 		utils.GinResponse(c, response.Response{Status: 400, Error: validationError})
 		return
 	}
@@ -38,9 +37,8 @@ func (ac *AuthController) PharmacyLogin(c *gin.Context) {
 func (ac *AuthController) AdminLogin(c *gin.Context) {
 	ctx := c.Request.Context()
 	var form form.Login
-	validationError := c.BindJSON(&form)
 
-	if validationError != nil {
+	if validationError := c.BindJSON(&form); validationError != nil {
 		utils.GinResponse(c, response.Response{Status: 400, Error: validationError})
 		return
 	}
