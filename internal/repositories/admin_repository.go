@@ -21,7 +21,7 @@ func (r *AdminRepository) CreatePharmacy(ctx context.Context, form form.CreatePh
 	var password string
 	var id int
 
-	err := r.db.QueryRow(ctx, queries.PharmacyLogin, form.Username).Scan(&id, &password)
+	err := r.db.QueryRow(ctx, queries.CreatePharmacy, form.Name).Scan(&id, &password)
 
 	return password, id, err
 }

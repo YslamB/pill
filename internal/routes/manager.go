@@ -29,3 +29,7 @@ func authRoutes(r *gin.RouterGroup, ctrl *controllers.AuthController) {
 func adminRoutes(r *gin.RouterGroup, ctrl *controllers.AdminController) {
 	r.POST("/admin/pharmacy", ctrl.CreatePharmacy)
 }
+
+func clientRoutes(r *gin.RouterGroup, ctrl *controllers.AdminController) {
+	r.POST("/client/pharmacies", ctrl.CreatePharmacy)
+}

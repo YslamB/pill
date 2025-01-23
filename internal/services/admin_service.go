@@ -2,6 +2,7 @@ package services
 
 import (
 	"context"
+	"net/http"
 
 	"pharmacy/internal/models/form"
 	"pharmacy/internal/models/response"
@@ -23,7 +24,7 @@ func NewAdminService(db *pgxpool.Pool) *AdminService {
 
 func (s *AdminService) CreatePharmacy(ctx context.Context, form form.CreatePharmacy) response.Response {
 
-	pass, id, err := s.repo.PharmacyLogin(ctx, form)
+	pass, id, err := s.repo.CreatePharmacy(ctx, form)
 
 	if err != nil || pass == "" {
 		return response.Response{
@@ -40,7 +41,7 @@ func (s *AdminService) CreatePharmacy(ctx context.Context, form form.CreatePharm
 	if comparationError != nil {
 		return response.Response{
 			Error:  comparationError,
-			Status: http.StatusUnadminorized,
+			Status: http.StatusUnauthorized,
 		}
 	}
 

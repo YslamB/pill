@@ -1,0 +1,185 @@
+
+// /api/pharmacies
+{
+    "pharmacies":[
+        {
+            "id":"1",
+            "status": true,
+            "name":"pharmacy1",
+            "address":"address1",
+            "phone":"+380123456789",
+            "email":"email1@email.com",
+            "images":["image1","image2"]
+        },
+        {
+            "id":"2",
+            "status": true,
+            "name":"pharmacy2",
+            "address":"address2",
+            "phone":"+380987654321",
+            "email":"email2@email.com",
+            "images":["/api/public/images/image3","/api/public/images/image4"]
+        }
+    ]
+},
+
+// /api/categories
+{
+    "categories":[
+        {
+            "id":"1",
+            "name":"category1",
+            "image":"/api/public/images/image1"
+        },
+        {
+            "id":"2",
+            "name":"category2",
+            "image":"/api/public/images/image2"
+        },
+        {
+            "id":"3",
+            "name":"category3",
+            "image":"/api/public/images/image3"
+        }
+    ]
+}
+
+// /api/products
+{
+    "products":[
+        {
+            "id":"1",
+            "name":"product1",
+            "price":100,
+            "category":"category name",
+            "pharmacy":"pharmacy1",
+            "bookmark":true,
+            "images":["/api/public/images/image1","/api/public/images/image2"]
+        },
+        {
+            "id":"2",
+            "name":"product2",
+            "price":200,
+            "category":"category name",
+            "pharmacy":"pharmacy4",
+            "bookmark":false,
+            "images":["/api/public/images/image3","/api/public/images/image4"]
+        }
+    ]
+}
+
+// /api/product/{product_id}
+{
+    "id":"1",
+    "name":"product1",
+    "price":100,
+    "category":"category name",
+    "description":"product1 description",
+    "pharmacy":"pharmacy5",
+    "bookmark":true,
+    "images":["/api/public/images/image1","/api/public/images/image2"]
+}
+
+// /api/bookmarks
+{
+    "products":[
+        {
+            "id":"1",
+            "name":"product1",
+            "price":100,
+            "category":"category name",
+            "pharmacy":"pharmacy2",
+            "bookmark":true,
+            "images":["/api/public/images/image1","/api/public/images/image2"]
+        },
+        {
+            "id":"2",
+            "name":"product2",
+            "price":200,
+            "category":"category name",
+            "pharmacy":"pharmacy9",
+            "bookmark":true,
+            "images":["/api/public/images/image3","/api/public/images/image4"]
+        }
+    ]
+}
+
+// /api/all/{product_id}?order_by=-price //kemelyan tertipde, 
+{
+    "products":[
+        {
+            "id":"1",
+            "name":"product1",
+            "price":110,
+            "category":"category name",
+            "pharmacy":"pharmacy5",
+            "bookmark":true,
+            "images":["/api/public/images/image1","/api/public/images/image2"]
+        },{
+            "id":"1",
+            "name":"product1",
+            "price":98,
+            "category":"category name",
+            "pharmacy":"pharmacy3",
+            "bookmark":true,
+            "images":["/api/public/images/image1","/api/public/images/image2"]
+        },{
+            "id":"1",
+            "name":"product1",
+            "price":70,
+            "category":"category name",
+            "pharmacy":"pharmacy9",
+            "bookmark":true,
+            "images":["/api/public/images/image1","/api/public/images/image2"]
+        }
+    ]
+}
+
+// /api/category/{category_id}/products
+{
+    "products":[
+        {
+            "id":"1",
+            "name":"product1",
+            "price":100,
+            "category":"category name",
+            "pharmacy":"pharmacy5",
+            "bookmark":true,
+            "images":["/api/public/images/image1","/api/public/images/image2"]
+        },
+        {
+            "id":"2",
+            "name":"product2",
+            "price":200,
+            "category":"category name",
+            "pharmacy":"pharmacy9",
+            "bookmark":true,
+            "images":["/api/public/images/image3","/api/public/images/image4"]
+        }
+    ]
+}
+
+// /api/search?query=product1
+{
+    "products":[
+        {
+            "id":"1",
+            "name":"product1",
+            "price":100,
+            "category":"category name",
+            "pharmacy":"pharmacy5",
+            "bookmark":true,
+            "images":["/api/public/images/image1","/api/public/images/image2"]
+        },
+        {
+            "id":"1",
+            "name":"product1",
+            "price":200,
+            "category":"category name",
+            "pharmacy":"pharmacy9",
+            "bookmark":true,
+            "images":["/api/public/images/image1","/api/public/images/image2"]
+        }
+    ]
+}
+
