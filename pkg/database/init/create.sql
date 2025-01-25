@@ -1,14 +1,27 @@
 drop table if exists admins;
 drop table if exists pharmacy_managers;
+drop table if exists product_categories;
+drop table if exists bookmarks;
+drop table if exists pharmacy_products;
+drop table if exists products;
 drop table if exists pharmacies;
+drop table if exists categories;
+drop table if exists producers;
 drop table if exists cities;
+drop table if exists devices;
+drop table if exists countries;
 
 create table countries (
     "id" serial primary key not null,
     "name" character varying(50) not null,
-    "flag" character varying(50) not null
+    "flag" character varying(50) not null,
     "status" boolean default true not null,
     "created_at" timestamp without time zone not null default now()
+);
+
+create table devices (
+    "device_id" character varying(50) primary key not null,
+    "active_date" timestamp without time zone not null default now()
 );
 
 create table producers (
@@ -23,8 +36,8 @@ create table producers (
     CONSTRAINT producers_country_id_fk
         FOREIGN KEY ("country_id")
             REFERENCES countries("id") 
-                ON UPDATE CASCADE ON DELETE null
-)
+                ON UPDATE CASCADE ON DELETE set null
+);
 
 create table products (
     "id" serial primary key not null,
@@ -41,8 +54,8 @@ create table products (
     CONSTRAINT products_producer_id_fk
         FOREIGN KEY ("producer_id")
             REFERENCES producers("id") 
-                ON UPDATE CASCADE ON DELETE null
-)
+                ON UPDATE CASCADE ON DELETE set null
+);
 
 create table categories (
     "id" serial primary key not null,
@@ -61,13 +74,13 @@ create table product_categories (
     CONSTRAINT product_categories_product_id_fk
         FOREIGN KEY ("product_id")
             REFERENCES products("id") 
-                ON UPDATE CASCADE ON DELETE null,
+                ON UPDATE CASCADE ON DELETE set null,
 
     CONSTRAINT product_categories_category_id_fk
         FOREIGN KEY ("category_id")
             REFERENCES categories("id") 
-                ON UPDATE CASCADE ON DELETE null
-)
+                ON UPDATE CASCADE ON DELETE set null
+);
 
 create table cities (
     "id" serial primary key not null,
@@ -93,7 +106,7 @@ create table pharmacies (
     CONSTRAINT pharmacies_city_id_fk
         FOREIGN KEY ("city_id")
             REFERENCES cities("id") 
-                ON UPDATE CASCADE ON DELETE null
+                ON UPDATE CASCADE ON DELETE set null
 );
 
 create table pharmacy_products (
@@ -109,12 +122,29 @@ create table pharmacy_products (
     CONSTRAINT pharmacy_products_pharmacy_id_fk
         FOREIGN KEY ("pharmacy_id")
             REFERENCES pharmacies("id") 
-                ON UPDATE CASCADE ON DELETE null,
+                ON UPDATE CASCADE ON DELETE set null,
+
     CONSTRAINT pharmacy_products_product_id_fk
         FOREIGN KEY ("product_id")
             REFERENCES products("id") 
-                ON UPDATE CASCADE ON DELETE null
-)
+                ON UPDATE CASCADE ON DELETE set null
+);
+
+create table bookmarks (
+    "id" serial primary key not null,
+    "ph_ps_id" int not null, -- pharmacy_products_id
+    "device_id" character varying(50) not null,
+    "created_at" timestamp without time zone default now(),
+    CONSTRAINT bookmarks_ph_ps_id_fk
+        FOREIGN KEY ("ph_ps_id")
+            REFERENCES pharmacy_products("id")
+                on update CASCADE on DELETE CASCADE,
+    CONSTRAINT bookmarks_device_id_fk
+        FOREIGN KEY ("device_id")
+            REFERENCES devices("device_id")
+                on update CASCADE on DELETE CASCADE
+
+);
 
 create table pharmacy_managers (
     "id" serial primary key not null,
@@ -128,7 +158,7 @@ create table pharmacy_managers (
     CONSTRAINT pharmacy_managers_pharmacy_id_fk
         FOREIGN KEY ("pharmacy_id")
             REFERENCES pharmacies("id") 
-                ON UPDATE CASCADE ON DELETE null
+                ON UPDATE CASCADE ON DELETE set null
 );
 
 

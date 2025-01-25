@@ -29,17 +29,17 @@
         {
             "id":"1",
             "name":"category1",
-            "image":"/api/public/images/image1"
+            "icon":"/api/public/icons/icon1"
         },
         {
             "id":"2",
             "name":"category2",
-            "image":"/api/public/images/image2"
+            "icon":"/api/public/icons/icon2"
         },
         {
             "id":"3",
             "name":"category3",
-            "image":"/api/public/images/image3"
+            "icon":"/api/public/icons/icon3"
         }
     ]
 }
@@ -51,7 +51,7 @@
             "id":"1",
             "name":"product1",
             "price":100,
-            "category":"category name",
+            // "category":"category name",
             "pharmacy":"pharmacy1",
             "bookmark":true,
             "images":["/api/public/images/image1","/api/public/images/image2"]
@@ -60,7 +60,7 @@
             "id":"2",
             "name":"product2",
             "price":200,
-            "category":"category name",
+            // "category":"category name",
             "pharmacy":"pharmacy4",
             "bookmark":false,
             "images":["/api/public/images/image3","/api/public/images/image4"]

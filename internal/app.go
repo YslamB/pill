@@ -10,15 +10,17 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-func InitApp(db *pgxpool.Pool, logger *mglogger.Logger) *gin.Engine {
+func InitApp(db *pgxpool.Pool, logger *mglogger.Logger) (router *gin.Engine) {
 	// rl := middlewares.NewRateLimiter()
 
 	if os.Getenv("GIN_MODE") == "release" {
 		gin.SetMode(gin.ReleaseMode)
 		gin.DisableConsoleColor()
+		router = gin.New()
+	} else {
+		gin.SetMode(gin.DebugMode)
+		router = gin.Default()
 	}
-
-	router := gin.New()
 
 	router.Static("/api/static", config.ENV.UPLOAD_PATH)
 
