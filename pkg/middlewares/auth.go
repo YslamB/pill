@@ -57,50 +57,6 @@ func AdminGuard(c *gin.Context) {
 	c.Next()
 }
 
-func WorkerGuard(c *gin.Context) {
-	role := c.MustGet("role").(string)
-
-	if role != "worker" {
-		c.AbortWithStatus(403)
-		return
-	}
-
-	c.Next()
-}
-
-func UserGuard(c *gin.Context) {
-	role := c.MustGet("role").(string)
-
-	if role != "user" {
-		c.AbortWithStatus(403)
-		return
-	}
-
-	c.Next()
-}
-
-func UserOrAdminGuard(c *gin.Context) {
-	role := c.MustGet("role").(string)
-
-	if role != "user" && role != "admin" {
-		c.AbortWithStatus(403)
-		return
-	}
-
-	c.Next()
-}
-
-func WorkerOrAdminGuard(c *gin.Context) {
-	role := c.MustGet("role").(string)
-
-	if role != "worker" && role != "admin" {
-		c.AbortWithStatus(403)
-		return
-	}
-
-	c.Next()
-}
-
 func ParamIDToInt(c *gin.Context) {
 	idStr := c.Param("id")
 
@@ -137,3 +93,14 @@ func PageLimitSet(c *gin.Context) {
 	c.Set("limit", limit)
 	c.Next()
 }
+
+// func WorkerGuard(c *gin.Context) {
+// 	role := c.MustGet("role").(string)
+
+// 	if role != "worker" {
+// 		c.AbortWithStatus(403)
+// 		return
+// 	}
+
+// 	c.Next()
+// }

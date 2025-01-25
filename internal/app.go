@@ -4,6 +4,7 @@ import (
 	"os"
 	"pharmacy/internal/config"
 	"pharmacy/internal/routes"
+	"pharmacy/pkg/middlewares"
 
 	"github.com/YslamB/mglogger"
 	"github.com/gin-gonic/gin"
@@ -22,6 +23,7 @@ func InitApp(db *pgxpool.Pool, logger *mglogger.Logger) (router *gin.Engine) {
 		router = gin.Default()
 	}
 
+	router.Use(middlewares.PanicHandler(logger))
 	router.Static("/api/static", config.ENV.UPLOAD_PATH)
 
 	// new routers

@@ -24,7 +24,9 @@ insert into pharmacies (name, address, images, phone, email, open_time, close_ti
 insert into pharmacies (name, address, images, phone, email, open_time, close_time, status) values ('pharmacy4', 'address4', '{image1, image2}', 'phone4', 'email4', 'open_time4', 'close_time4', true);
 insert into pharmacy_products (pharmacy_id, product_id, price, expiration_date, stock_count, cupon, status) values (1, 1, 100, '2024-08-01', 10, true, true);
 insert into pharmacy_products (pharmacy_id, product_id, price, expiration_date, stock_count, cupon, status) values (1, 2, 200, '2024-08-02', 20, true, true);
+insert into pharmacy_products (pharmacy_id, product_id, price, expiration_date, stock_count, cupon, status) values (2, 2, 176, '2024-08-02', 20, true, true);
 insert into pharmacy_products (pharmacy_id, product_id, price, expiration_date, stock_count, cupon, status) values (1, 3, 300, '2024-08-03', 30, true, true);
+insert into pharmacy_products (pharmacy_id, product_id, price, expiration_date, stock_count, cupon, status) values (2, 3, 348, '2024-08-03', 30, true, true);
 insert into devices (device_id) values ('test_device_id');
 insert into bookmarks (ph_ps_id, device_id) values (1, 'test_device_id');
 insert into bookmarks (ph_ps_id, device_id) values (2, 'test_device_id');

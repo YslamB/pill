@@ -1,7 +1,7 @@
 
-// /api/pharmacies
+// /api/client/pharmacies
 {
-    "pharmacies":[
+    "data":[
         {
             "id":"1",
             "status": true,
@@ -23,9 +23,9 @@
     ]
 },
 
-// /api/categories
+// /api/client/categories
 {
-    "categories":[
+    "data":[
         {
             "id":"1",
             "name":"category1",
@@ -44,9 +44,9 @@
     ]
 }
 
-// /api/products
+// /api/client/products
 {
-    "products":[
+    "data":[
         {
             "id":"1",
             "name":"product1",
@@ -68,26 +68,28 @@
     ]
 }
 
-// /api/product/{product_id}
+// /api/client/product/{product_id}
 {
-    "id":"1",
-    "name":"product1",
-    "price":100,
-    "category":"category name",
-    "description":"product1 description",
-    "pharmacy":"pharmacy5",
-    "bookmark":true,
-    "images":["/api/public/images/image1","/api/public/images/image2"]
+    "data":{
+        "id":"1",
+        "name":"product1",
+        "price":100,
+        // "category":"category name",
+        "description":"product1 description",
+        "pharmacy":"pharmacy5",
+        "bookmark":true,
+        "images":["/api/public/images/image1","/api/public/images/image2"]
+    }
 }
 
-// /api/bookmarks
+// /api/client/bookmarks
 {
-    "products":[
+    "data":[
         {
             "id":"1",
             "name":"product1",
             "price":100,
-            "category":"category name",
+            // "category":"category name",
             "pharmacy":"pharmacy2",
             "bookmark":true,
             "images":["/api/public/images/image1","/api/public/images/image2"]
@@ -96,7 +98,7 @@
             "id":"2",
             "name":"product2",
             "price":200,
-            "category":"category name",
+            // "category":"category name",
             "pharmacy":"pharmacy9",
             "bookmark":true,
             "images":["/api/public/images/image3","/api/public/images/image4"]
@@ -104,14 +106,14 @@
     ]
 }
 
-// /api/all/{product_id}?order_by=-price //kemelyan tertipde, 
+// /api/client/all/{product_id}?order_by=-price //kemelyan tertipde, 
 {
-    "products":[
+    "data":[
         {
             "id":"1",
             "name":"product1",
             "price":110,
-            "category":"category name",
+            // "category":"category name",
             "pharmacy":"pharmacy5",
             "bookmark":true,
             "images":["/api/public/images/image1","/api/public/images/image2"]
@@ -119,7 +121,7 @@
             "id":"1",
             "name":"product1",
             "price":98,
-            "category":"category name",
+            // "category":"category name",
             "pharmacy":"pharmacy3",
             "bookmark":true,
             "images":["/api/public/images/image1","/api/public/images/image2"]
@@ -127,7 +129,7 @@
             "id":"1",
             "name":"product1",
             "price":70,
-            "category":"category name",
+            // "category":"category name",
             "pharmacy":"pharmacy9",
             "bookmark":true,
             "images":["/api/public/images/image1","/api/public/images/image2"]
@@ -135,9 +137,9 @@
     ]
 }
 
-// /api/category/{category_id}/products
+// /api/client/category/{category_id}/products
 {
-    "products":[
+    "data":[
         {
             "id":"1",
             "name":"product1",
@@ -159,9 +161,9 @@
     ]
 }
 
-// /api/search?query=product1
+// /api/client/search?query=product1
 {
-    "products":[
+    "data":[
         {
             "id":"1",
             "name":"product1",

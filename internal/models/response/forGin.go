@@ -67,3 +67,7 @@ type Response struct {
 	Status int         `json:"status"`
 	Data   interface{} `json:"data"`
 }
+
+type Data struct {
+	Data interface{} `json:"data"`
+}

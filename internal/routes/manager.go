@@ -2,6 +2,7 @@ package routes
 
 import (
 	"pharmacy/internal/controllers"
+	"pharmacy/pkg/middlewares"
 
 	"github.com/YslamB/mglogger"
 	"github.com/gin-gonic/gin"
@@ -38,4 +39,8 @@ func clientRoutes(r *gin.RouterGroup, ctrl *controllers.ClientController) {
 	r.GET("/pharmacies", ctrl.Pharmacies)
 	r.GET("/categories", ctrl.Categories)
 	r.GET("/products", ctrl.Products) // popular products
+	r.GET("/product/:id", middlewares.ParamIDToInt, ctrl.Product)
+	r.GET("/bookmarks", ctrl.Bookmarks)
+	r.GET("/all/:id", middlewares.ParamIDToInt, ctrl.AllProducts)                    // popular products
+	r.GET("/category/:id/products", middlewares.ParamIDToInt, ctrl.CategoryProducts) // popular products
 }

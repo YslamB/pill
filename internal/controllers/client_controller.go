@@ -44,3 +44,44 @@ func (ac *ClientController) Products(c *gin.Context) {
 
 	utils.GinResponse(c, data)
 }
+
+func (ac *ClientController) Product(c *gin.Context) {
+	id := c.MustGet("paramID").(int)
+
+	// id, err := utils.StringToInt(strId)
+
+	ctx := c.Request.Context()
+
+	data := ac.service.Product(ctx, id)
+
+	utils.GinResponse(c, data)
+}
+
+func (ac *ClientController) Bookmarks(c *gin.Context) {
+
+	ctx := c.Request.Context()
+	d_id := "test_device_id" // get it from headers
+	data := ac.service.Bookmarks(ctx, d_id)
+
+	utils.GinResponse(c, data)
+}
+
+func (ac *ClientController) AllProducts(c *gin.Context) {
+
+	ctx := c.Request.Context()
+	id := c.MustGet("paramID").(int)
+
+	data := ac.service.AllProducts(ctx, id)
+
+	utils.GinResponse(c, data)
+}
+
+func (ac *ClientController) CategoryProducts(c *gin.Context) {
+
+	ctx := c.Request.Context()
+	id := c.MustGet("paramID").(int)
+
+	data := ac.service.CategoryProducts(ctx, id)
+
+	utils.GinResponse(c, data)
+}

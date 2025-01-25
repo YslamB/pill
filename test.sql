@@ -3117,3 +3117,17 @@ INNER JOIN stations s2 ON s2.id = r.destination_id
 WHERE tr.departure_time > $1 AND tr.departure_time < $2
 GROUP BY tr.id, s1.title_tm, s2.title_tm
 ORDER BY TO_NUMBER(tr.number, '99999999') DESC;
+
+
+select 
+    pps.id,
+    ps.name,
+    pps.price,
+    ph.name pharmacy,
+    true bookmark,
+    ps.images
+from bookmarks bs
+left join pharmacy_products pps on pps.id = bs.ph_ps_id
+left join products ps on ps.id = pps.product_id
+left join pharmacies ph on ph.id = pps.pharmacy_id
+where device_id = 'test_device_id';

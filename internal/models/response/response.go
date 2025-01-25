@@ -23,3 +23,14 @@ type Pharmacy struct {
 type Pharmacies struct {
 	Pharmacies []interface{} `json:"pharmacies"`
 }
+
+type Product struct {
+	ID          int      `json:"id"`
+	Name        string   `json:"name"`
+	Price       int      `json:"price"`
+	Pharmacy    string   `json:"pharmacy"`
+	Description string   `json:"description"`
+	Bookmark    bool     `json:"bookmark"`
+	Images      []string `json:"images"`
+	// Category    string `json:"category"`
+}
