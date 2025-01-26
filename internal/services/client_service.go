@@ -114,3 +114,17 @@ func (s *ClientService) CategoryProducts(ctx context.Context, id int) response.R
 
 	return response.Response{Data: response.Data{Data: data}}
 }
+
+func (s *ClientService) Search(ctx context.Context, query string) response.Response {
+
+	data, err := s.repo.Search(ctx, query)
+
+	if err != nil {
+		return response.Response{
+			Error:  err,
+			Status: http.StatusUnauthorized,
+		}
+	}
+
+	return response.Response{Data: response.Data{Data: data}}
+}

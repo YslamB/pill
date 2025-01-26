@@ -105,5 +105,42 @@ var AllProducts = `
 `
 
 var CategoryProducts = `
+	select 
+		json_agg(
+			json_build_object(
+				'id', ps.id,
+				'name', ps.name,
+				'price', pps.price,
+				'category', cs.name,
+				'pharmacy', phs.name,
+				'bookmark', pps.id in (select ph_ps_id from bookmarks where device_id = 'test_device_id'),
+				'images', ps.images
+			)
+		)
+	from pharmacy_products pps
+	left join products ps on pps.product_id = ps.id
+	left join pharmacies phs on phs.id = pps.pharmacy_id
+	left join product_categories pcs on pcs.product_id = ps.id
+	left join categories cs on cs.id = pcs.category_id
+	where pps.status = true and cs.id = $1;
+`
 
+var Search = `	
+	select 
+		json_agg(
+			json_build_object(
+				'id', ps.id,
+				'name', ps.name,
+				'price', pps.price,
+				-- 'category', cs.name,
+				'pharmacy', phs.name,
+				'bookmark', pps.id in (select ph_ps_id from bookmarks where device_id = 'test_device_id'),
+				'images', ps.images
+			)
+		)
+	from pharmacy_products pps
+	left join products ps on pps.product_id = ps.id
+	left join pharmacies phs on phs.id = pps.pharmacy_id
+	-- left join categories cs on cs.id = pcs.category_id
+	where pps.status = true and ps.name ilike '%' || $1 || '%';
 `

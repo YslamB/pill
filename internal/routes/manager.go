@@ -43,4 +43,5 @@ func clientRoutes(r *gin.RouterGroup, ctrl *controllers.ClientController) {
 	r.GET("/bookmarks", ctrl.Bookmarks)
 	r.GET("/all/:id", middlewares.ParamIDToInt, ctrl.AllProducts)                    // popular products
 	r.GET("/category/:id/products", middlewares.ParamIDToInt, ctrl.CategoryProducts) // popular products
+	r.GET("/search", ctrl.Search)                                                    // popular products
 }

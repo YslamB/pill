@@ -85,3 +85,13 @@ func (ac *ClientController) CategoryProducts(c *gin.Context) {
 
 	utils.GinResponse(c, data)
 }
+
+func (ac *ClientController) Search(c *gin.Context) {
+
+	ctx := c.Request.Context()
+	query := c.Query("query")
+
+	data := ac.service.Search(ctx, query)
+
+	utils.GinResponse(c, data)
+}
