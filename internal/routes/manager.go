@@ -33,6 +33,7 @@ func authRoutes(r *gin.RouterGroup, ctrl *controllers.AuthController) {
 
 func adminRoutes(r *gin.RouterGroup, ctrl *controllers.AdminController) {
 	r.POST("/admin/pharmacy", ctrl.CreatePharmacy)
+	r.POST("/admin/city", ctrl.CreateCity)
 }
 
 func clientRoutes(r *gin.RouterGroup, ctrl *controllers.ClientController) {

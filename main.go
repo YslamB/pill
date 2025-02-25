@@ -5,12 +5,13 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	app "pharmacy/internal"
+	"syscall"
+	"time"
+
+	"pharmacy/internal"
 	"pharmacy/internal/config"
 	"pharmacy/pkg/database"
 	"pharmacy/pkg/utils"
-	"syscall"
-	"time"
 )
 
 func main() {
@@ -18,7 +19,7 @@ func main() {
 	config.LoadConfig()
 	logger := utils.InitLogger()
 	db := database.InitDB()
-	server := app.InitApp(db, logger)
+	server := internal.InitApp(db, logger)
 
 	srv := &http.Server{
 		Addr:    config.ENV.LISTEN,

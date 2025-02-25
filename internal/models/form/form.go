@@ -14,3 +14,7 @@ type CreatePharmacy struct {
 	Email     string `json:"email" binding:"required"`
 	Password  string `json:"password" binding:"required"`
 }
+
+type CreateCity struct {
+	Name string `json:"name" binding:"required"`
+}

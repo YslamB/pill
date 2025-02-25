@@ -2,9 +2,11 @@ package repositories
 
 import (
 	"context"
+
 	"pharmacy/internal/models/form"
 	"pharmacy/internal/queries"
 
+	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
@@ -14,6 +16,13 @@ type AdminRepository struct {
 
 func NewAdminRepository(db *pgxpool.Pool) *AdminRepository {
 	return &AdminRepository{db}
+}
+
+func (r *AdminRepository) CreateCity(ctx context.Context, form form.CreateCity) gin.H {
+
+	// r.db.QueryRow(ctx, queries.CreateCity, form.Name).Scan(&id, &password)
+
+	return gin.H{"message": "Successfully saved into database"}
 }
 
 func (r *AdminRepository) CreatePharmacy(ctx context.Context, form form.CreatePharmacy) (string, int, error) {

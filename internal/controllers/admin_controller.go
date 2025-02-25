@@ -34,3 +34,18 @@ func (ac *AdminController) CreatePharmacy(c *gin.Context) {
 
 	utils.GinResponse(c, data)
 }
+
+func (ac *AdminController) CreateCity(c *gin.Context) {
+
+	ctx := c.Request.Context()
+	var form form.CreateCity
+
+	if validationError := c.BindJSON(&form); validationError != nil {
+		utils.GinResponse(c, response.Response{Status: 400, Error: validationError})
+		return
+	}
+
+	data := ac.service.CreateCity(ctx, form)
+
+	utils.GinResponse(c, data)
+}

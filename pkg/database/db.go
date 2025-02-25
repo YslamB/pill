@@ -4,8 +4,9 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"pharmacy/internal/config"
 	"time"
+
+	"pharmacy/internal/config"
 
 	"github.com/jackc/pgx/v5/pgxpool"
 )

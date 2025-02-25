@@ -49,3 +49,8 @@ func (s *AdminService) CreatePharmacy(ctx context.Context, form form.CreatePharm
 
 	return response.Response{Data: gin.H{"access_token": accessToken, "refresh_token": refreshToken}, Status: http.StatusOK}
 }
+
+func (s *AdminService) CreateCity(ctx context.Context, form form.CreateCity) response.Response {
+	s.repo.CreateCity(ctx, form)
+	return response.Response{Data: s.repo.CreateCity(ctx, form)}
+}

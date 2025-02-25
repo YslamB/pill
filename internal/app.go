@@ -1,7 +1,8 @@
-package src
+package internal
 
 import (
 	"os"
+
 	"pharmacy/internal/config"
 	"pharmacy/internal/routes"
 	"pharmacy/pkg/middlewares"

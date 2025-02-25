@@ -2,7 +2,7 @@ package repositories
 
 import (
 	"context"
-	"fmt"
+
 	"pharmacy/internal/models/response"
 	"pharmacy/internal/queries"
 
@@ -72,13 +72,11 @@ func (r *ClientRepository) CategoryProducts(ctx context.Context, id int) ([]inte
 	var c = make([]interface{}, 0)
 
 	err := r.db.QueryRow(ctx, queries.CategoryProducts, id).Scan(&c)
-	fmt.Println(c)
 	return c, err
 }
 
 func (r *ClientRepository) Search(ctx context.Context, query string) ([]interface{}, error) {
 	var s = make([]interface{}, 0)
-	fmt.Println(query)
 	err := r.db.QueryRow(ctx, queries.Search, query).Scan(&s)
 
 	return s, err

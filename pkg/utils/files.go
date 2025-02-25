@@ -8,10 +8,11 @@ import (
 	"image/jpeg"
 	"image/png"
 	"io"
-	"pharmacy/internal/config"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"pharmacy/internal/config"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"

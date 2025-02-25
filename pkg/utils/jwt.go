@@ -1,8 +1,9 @@
 package utils
 
 import (
-	"pharmacy/internal/config"
 	"time"
+
+	"pharmacy/internal/config"
 
 	"github.com/golang-jwt/jwt/v5"
 )

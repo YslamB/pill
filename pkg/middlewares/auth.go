@@ -1,11 +1,12 @@
 package middlewares
 
 import (
+	"strconv"
+	"strings"
+
 	"pharmacy/internal/config"
 	"pharmacy/internal/models/response"
 	"pharmacy/pkg/utils"
-	"strconv"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"

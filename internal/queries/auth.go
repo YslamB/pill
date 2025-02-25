@@ -9,5 +9,9 @@ var AdminLogin = `
 `
 
 var CreatePharmacy = `
-	
+	insert into 
+`
+
+var CreateCity = `
+	insert into 
 `
