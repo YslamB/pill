@@ -7,11 +7,3 @@ var PharmacyLogin = `
 var AdminLogin = `
 	select id, password from admins where username = $1;
 `
-
-var CreatePharmacy = `
-	insert into 
-`
-
-var CreateCity = `
-	insert into 
-`
